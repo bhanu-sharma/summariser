@@ -54,7 +54,7 @@ if __name__ == "__main__":
     input_doc_list = df.cleaned_tool_input.progress_apply(split_in_sentences).to_list()
     output_doc_list = df.cleaned_output.progress_apply(split_in_sentences).to_list()
 
-    _format_to_bert(input_doc_list, output_doc_list, "./data/bert_data")
+    _format_to_bert(input_doc_list, output_doc_list, "./data/bert_data.train.pt")
 
     # src = [sent.split() for sent in input_doc_list[0].split("\n")]
     # tgt = [output_doc_list[0].split()]
