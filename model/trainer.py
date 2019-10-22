@@ -6,8 +6,8 @@ from tensorboardX import SummaryWriter
 
 import distributed
 # import onmt
-from reporter import ReportMgr
-from stats import Statistics
+from utils.reporter import ReportMgr
+from utils.stats import Statistics
 # from utils import test_rouge, rouge_results_to_str
 
 

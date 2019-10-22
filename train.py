@@ -3,11 +3,12 @@ import torch
 import random
 import argparse
 from collections import namedtuple
-from data_loader import load_dataset
+from preprocess.data_loader import load_dataset
 
-import data_loader, model_builder
-from model_builder import Summarizer
-from trainer import build_trainer
+from model import model_builder
+from preprocess import data_loader
+from model.model_builder import Summarizer
+from model.trainer import build_trainer
 
 model_flags = ['hidden_size', 'ff_size', 'heads', 'inter_layers', 'encoder', 'ff_actv', 'use_interval', 'rnn_size']
 
@@ -53,7 +54,7 @@ def train(args, device_id, bert_data_path):
                                 map_location=lambda storage, loc: storage)
         opt = vars(checkpoint['opt'])
         for k in opt.keys():
-            if (k in model_flags):
+            if k in model_flags:
                 setattr(args, k, opt[k])
         model.load_cp(checkpoint)
         optim = model_builder.build_optim(args, model, checkpoint)
@@ -72,10 +73,10 @@ if __name__ == "__main__":
     args_dict = {'encoder': "classifier",
                  'mode': "train",
                  'bert_data_path': "../bert_data/cnndm",
-                 'model_path': "../models/",
-                 'result_path': "'/results/')",
-                 'temp_dir': "../temp')",
-                 'bert_config_path': "../bert_config_uncased_base.json",
+                 'model_path': "./models/",
+                 'result_path': "./results/",
+                 'temp_dir': "./temp')",
+                 'bert_config_path': "./bert_config_uncased_base.json",
                  'batch_size': 3000,
                  'use_interval': True,
                  'hidden_size': 128,

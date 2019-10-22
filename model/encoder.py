@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from rnn import LayerNormLSTM
+from model.rnn import LayerNormLSTM
 
 
 class Classifier(nn.Module):
